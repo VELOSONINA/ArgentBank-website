@@ -3,17 +3,25 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import ReactDOM from 'react-dom/client';
 import '../src/Styles/index.css';
 import App from './App';
+
+//Redux
 import { Provider } from 'react-redux';
-import store from './redux/store'; 
+import { configureStore } from '@reduxjs/toolkit'; 
+import rootReducer from './reducers';
 
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
+const store = configureStore({
+  reducer: rootReducer, 
+  devTools: true}
+  );
+
+ReactDOM.render(
   <Provider store={store}>
-  <React.StrictMode>
-    <Router>
-      <App />
-    </Router>
-  </React.StrictMode>
-  </Provider>
+    <React.StrictMode>
+      <Router>
+        <App />
+      </Router>
+    </React.StrictMode>
+  </Provider>,
+  document.getElementById('root')
 );
