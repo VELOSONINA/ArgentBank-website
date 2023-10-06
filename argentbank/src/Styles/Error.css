@@ -23,7 +23,7 @@
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
-    .error404{
+    .error404 {
         min-height: calc(100vh - 327px);
         margin-top: 10vh;
 
@@ -31,7 +31,7 @@
             font-size: 18vw;
         }
         
-        p{
+        p {
             font-size: 2vh5vw;
         }
     }
@@ -47,7 +47,7 @@
             font-size: 17vw;
         }
 
-        p{
+        p {
             font-size: 5vw;
         }
     }
