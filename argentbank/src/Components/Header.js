@@ -1,11 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom'; 
+import { NavLink } from 'react-router-dom'; 
 import logo from '../assets/images/argentBankLogo.png';
 
 const Header = () => {
   return (
     <nav className="main-nav">
-      <Link to="/">
+      <NavLink to="/">
         <div className="main-nav-logo">
           <img
             className="main-nav-logo-image"
@@ -14,12 +14,12 @@ const Header = () => {
           />
           <h1 className="sr-only">Argent Bank</h1>
         </div>
-      </Link>
+      </NavLink>
       <div>
-        <Link className="main-nav-item" to="/sign-in">
+        <NavLink className="main-nav-item" to="/sign-in">
           <i className="fa fa-user-circle"></i>
           Sign In
-        </Link>
+        </NavLink>
       </div>
     </nav>
   );
