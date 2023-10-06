@@ -1,6 +1,6 @@
 import React from 'react';
+import { createRoot } from 'react-dom/client';
 import { BrowserRouter as Router } from 'react-router-dom';
-import ReactDOM from 'react-dom';
 import '../src/Styles/index.css';
 import App from './App';
 
@@ -15,7 +15,9 @@ const store = configureStore({
   devTools: true}
   );
 
-ReactDOM.render(
+const root = createRoot(document.getElementById('root'));
+
+root.render(
   <Provider store={store}>
     <React.StrictMode>
       <Router>
@@ -23,6 +25,5 @@ ReactDOM.render(
       </Router>
     </React.StrictMode>
   </Provider>,
-  document.getElementById('root')
 );
 
