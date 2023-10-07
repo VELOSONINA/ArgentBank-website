@@ -1,4 +1,18 @@
 @use "./Variables.scss";
+.login-page {
+    text-align: center;
+    h1 {
+      margin-bottom: 1rem; 
+    }
+  
+    form {
+      margin-top: 1rem; 
+    }
+  }
+
+.bg-dark {
+    background-color: #12002b;
+}
 
 .sign-in-button {
     display: block;
@@ -7,8 +21,8 @@
     font-size: 1.1rem;
     font-weight: bold;
     margin-top: 1rem;
-    border-color: $green-color;
-    background-color: $green-color;
+    border-color: Variables.$green-color;
+    background-color: Variables.$green-color;
     color: #fff;
 }
   
@@ -19,6 +33,8 @@
     margin: 0 auto;
     margin-top: 3rem;
     padding: 2rem;
+    position: relative;
+    top: 10%;
   
     .sign-in-icon {
         font-size: 5rem;

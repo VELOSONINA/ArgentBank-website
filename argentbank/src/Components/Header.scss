@@ -8,10 +8,10 @@
   
     a {
       font-weight: bold;
-      color: $blue-dark-color;
+      color: Variables.$blue-dark-color;
   
       &.router-link-exact-active {
-        color: $green-color;
+        color: Variables.$green-color;
       }
     }
   
