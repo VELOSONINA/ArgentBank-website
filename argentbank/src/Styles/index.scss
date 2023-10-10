@@ -5,7 +5,7 @@ html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
-    color: Variables.$blue-dark-color;
+    color: $blue-dark-color;
 }
   
 body {
@@ -13,23 +13,11 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-
-    #root {
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-
-        .app-root {
-            height: 100%;
-        }
-        
-    }
 }
   
 .main {
     flex: 1;
+    min-height: 74vh;
 }
   
 .bg-dark {

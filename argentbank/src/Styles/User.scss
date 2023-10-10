@@ -5,7 +5,7 @@
     justify-content: space-between;
     align-items: center;
     border: 1px solid black;
-    background-color: #fff;
+    background-color: $white-color;
     width: 80%;
     margin: 0 auto;
     flex-direction: column;
@@ -41,14 +41,14 @@
     .edit-button {
         border-color: $green-color; 
         background-color: $green-color; 
-        color: #fff;
+        color: $white-color;
         font-weight: bold;
         padding: 10px;
     }
 }
 
 .header {
-    color: #fff;
+    color: $white-color;
     margin-bottom: 2rem;
     font-family: $main-font; 
 }
@@ -62,7 +62,7 @@
     margin-top: 1rem;
     border-color: $green-color; 
     background-color: $green-color; 
-    color: #fff;
+    color: $white-color;
 }
 
 @media (min-width: 720px) {
