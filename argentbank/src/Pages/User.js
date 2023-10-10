@@ -1,5 +1,5 @@
 import React from "react";
-import Accounts from "../Components/accounts/Accounts";
+import Accounts from "../Components/Users/Accounts";
 import Layout from "../Components/Layout";
 
 
