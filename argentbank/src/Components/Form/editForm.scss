@@ -1,0 +1,19 @@
+@use "../../Styles/Variables.scss";
+
+.button-wrapper {
+    padding: 1rem 0;
+}
+  
+.success-message {
+    color: $green-color;
+}
+  
+.error-message {
+    color: $green-color;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
