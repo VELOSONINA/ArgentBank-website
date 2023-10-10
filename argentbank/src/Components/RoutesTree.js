@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Home from '../Pages/Home';
+import User from "../Pages/User";
 import Login from '../Pages/Login';
-// import User from '../Pages/User';
 import Error from '../Pages/Error';
 
 
@@ -11,8 +11,7 @@ const RoutesTree = () => {
     <Routes>
       <Route path='/' element={<Home />} />
       <Route path='/sign-in' element={<Login />} />
-      {/* <Route path="/user/:id" 
-        element={<User username={userId}/>}/> */}
+      <Route path="/user" element={<User />} />
       <Route path='*' element={<Error />} />
     </Routes>
   );
