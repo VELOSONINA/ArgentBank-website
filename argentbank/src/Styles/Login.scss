@@ -1,18 +1,4 @@
 @use "./Variables.scss";
-.login-page {
-    text-align: center;
-    h1 {
-      margin-bottom: 1rem; 
-    }
-  
-    form {
-      margin-top: 1rem; 
-    }
-  }
-
-.bg-dark {
-    background-color: #12002b;
-}
 
 .sign-in-button {
     display: block;
@@ -25,43 +11,8 @@
     background-color: Variables.$green-color;
     color: #fff;
 }
+
   
-.sign-in-content {
-    box-sizing: border-box;
-    background-color: white;
-    width: 300px;
-    margin: 0 auto;
-    margin-top: 3rem;
-    padding: 2rem;
-    position: relative;
-    top: 10%;
-  
-    .sign-in-icon {
-        font-size: 5rem;
-    }
-  
-    .input-remember {
-        display: flex;
-  
-        label {
-            margin-left: 0.25rem;
-        }
-    }
-  
-    .input-wrapper {
-      display: flex;
-      flex-direction: column;
-      text-align: left;
-      margin-bottom: 1rem;
-  
-        label {
-            font-weight: bold;
-        }
-  
-        input {
-            padding: 5px;
-            font-size: 1.2rem;
-        }
-    }
+.sign-in-icon {
+    font-size: 5rem;
 }
-  
