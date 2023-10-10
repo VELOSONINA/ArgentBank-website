@@ -1,0 +1,10 @@
+@use "../Styles/Variables.scss";
+
+.edit-button {
+    border-color: $green-color;
+    background-color: $green-color;
+    color: #fff;
+    font-weight: bold;
+    padding: 10px;
+  }
+  
