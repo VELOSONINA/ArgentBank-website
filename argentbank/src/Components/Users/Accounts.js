@@ -1,6 +1,6 @@
 import React from "react";
 import { accountsData } from "../../data/accountsData";
-import Button from "./Button";
+import Button from "../Button";
 
 
 function Accounts() {
