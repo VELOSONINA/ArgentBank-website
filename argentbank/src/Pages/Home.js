@@ -1,18 +1,11 @@
 import React from 'react';
-import Features from '../Components/Features'
+import Features from '../Components/Features/Features';
+import Hero from '../Components/Features/Hero';
 
 const Home = () => {
   return (
     <main>
-      <div className="hero">
-        <section className="hero-content">
-          <h2 className="sr-only">Promoted Content</h2>
-          <p className="subtitle">No fees.</p>
-          <p className="subtitle">No minimum deposit.</p>
-          <p className="subtitle">High interest rates.</p>
-          <p className="text">Open a savings account with Argent Bank today!</p>
-        </section>
-      </div>
+      <Hero/>
       <Features/>
     </main>
   );
