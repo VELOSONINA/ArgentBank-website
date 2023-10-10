@@ -2,7 +2,22 @@ import React from 'react';
 import { NavLink } from 'react-router-dom'; 
 import logo from '../assets/images/argentBankLogo.png';
 
-const Header = () => {
+function Header() {
+  
+
+  // Définir isConnected en tant que fonction
+  const isConnected = () => {
+    return 
+  };
+
+  // Fonction pour gérer la déconnexion
+  const handleSignOut = (e) => {
+    e.preventDefault();
+    
+    localStorage.removeItem('IsLoggedIn', 'true');
+    localStorage.removeItem('token');
+  };
+
   return (
     <nav className="main-nav">
       <NavLink to="/">
@@ -16,14 +31,31 @@ const Header = () => {
         </div>
       </NavLink>
       <div>
-        <NavLink className="main-nav-item" to="/sign-in">
-          <i className="fa fa-user-circle"></i>
-          Sign In
-        </NavLink>
+        {isConnected() === true ? null : (
+          <NavLink className="main-nav-item" to="/sign-in">
+            <i className="fa fa-user-circle"></i>
+            Sign In
+          </NavLink>
+        )}
+        {isConnected() === false ? null : (
+          <>
+            <NavLink
+              to="/"
+              className="main-nav-item"
+              onClick={handleSignOut}
+            >
+              <i className="fa fa-sign-out"></i>
+              Sign Out
+            </NavLink>
+            <NavLink to="/user" className="main-nav-item">
+              <i className="fa fa-user-circle"></i>
+            
+            </NavLink>
+          </>
+        )}
       </div>
     </nav>
   );
 }
 
 export default Header;
-
