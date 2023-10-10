@@ -1,11 +1,15 @@
 
 @import './Styles/Variables.scss';
 @import './Styles/index.scss';
-@import './Styles/Home.scss';
 @import './Styles/Login.scss';
 @import './Styles/User.scss';
 @import './Styles/Error.css';
-@import './Components/Features.scss';
+@import './Components/Features/Features.scss';
+@import './Components/Features/Hero.scss';
+@import './Components/Form/loginForm.scss';
+@import './Components/accounts/Accounts.scss';
+@import './Components/Button.scss';
+@import './Components/Features/userHeader.scss';
 @import './Components/Header.scss';
 @import './Components/Footer.scss';
 
