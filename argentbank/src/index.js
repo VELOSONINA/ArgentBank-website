@@ -6,14 +6,7 @@ import App from './App';
 
 //Redux
 import { Provider } from 'react-redux';
-import { configureStore } from '@reduxjs/toolkit'; 
-import rootReducer from './reducers';
-
-
-const store = configureStore({
-  reducer: rootReducer, 
-  devTools: true}
-  );
+import store from './store';
 
 const root = createRoot(document.getElementById('root'));
 
