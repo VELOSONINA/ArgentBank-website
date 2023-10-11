@@ -7,7 +7,8 @@ function Header() {
 
   // Définir isConnected en tant que fonction
   const isConnected = () => {
-    return 
+    const isLoggedIn = localStorage.getItem('IsLoggedIn') === 'true';
+    return isLoggedIn; 
   };
 
   // Fonction pour gérer la déconnexion
