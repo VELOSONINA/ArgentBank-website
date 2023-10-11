@@ -1,7 +1,7 @@
 import React from 'react'
 import Button from '../Button';
 
-function userHeader({ userName }) {
+function UserHeader({ userName }) {
   return (
     <div className="header">
         <h1>
@@ -16,4 +16,4 @@ function userHeader({ userName }) {
   );
 }
 
-export default userHeader
+export default UserHeader
