@@ -1,4 +1,4 @@
-const accountData = [
+const accountsData = [
     {
       title: 'Argent Bank Checking (x8349)',
       amount: '$2,082.79',
@@ -19,5 +19,5 @@ const accountData = [
     },
   ];
   
-  export default accountData;
+  export default accountsData;
   
