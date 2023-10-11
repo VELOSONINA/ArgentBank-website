@@ -1,17 +1,17 @@
 import React from "react";
 import Accounts from "../Components/Users/Accounts";
-import Layout from "../Components/Layout";
-
+import UserHeader from "../Components/Users/userHeader";
+import Main from "../Components/Main";
 
 function User() {
   
   return (
-    <Layout>
+    <Main>
       <div className="main bg-dark">
-        <userHeader />
+        <UserHeader />
         <Accounts />
       </div>
-    </Layout>
+    </Main>
   );
 }
 export default User;
