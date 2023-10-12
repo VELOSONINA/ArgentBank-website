@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from "axios";
-import { setUserName } from "../reducers/userSlice";
+import { logOut } from "../reducers/userSlice";
 
 export const editUserNameAsync = createAsyncThunk('user/editUserName', async (userName, { dispatch }) => {
   try {
@@ -10,7 +10,7 @@ export const editUserNameAsync = createAsyncThunk('user/editUserName', async (us
     
     if (response.status === 200) {
       const editData = response.data.body.userName;
-      dispatch(setUserName(editData));
+      dispatch(logOut(editData));
       return true;
     }
 
