@@ -1,7 +1,7 @@
 @use "../../Styles/Variables.scss";
 
 .sign-in-button {
-    display: block;
+    // display: block;
     width: 100%;
     padding: 8px;
     font-size: 1.1rem;
@@ -10,6 +10,8 @@
     border-color: $green-color;
     background-color: $green-color;
     color: #fff;
+    cursor: pointer;
+    text-decoration: underline;
 }
    
 .input-remember {
@@ -35,5 +37,6 @@
         font-size: 1.2rem;
     }
 }
+
 
   
