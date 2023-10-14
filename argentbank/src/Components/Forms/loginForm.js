@@ -1,22 +1,36 @@
 import React, { useState } from 'react';
 import { loginUser } from '../../api/loginApi';
 import { useNavigate } from 'react-router-dom';
+import Button from '../Button'
+import { useDispatch, useSelector } from "react-redux";
+
 
 
 const LoginForm = () => {
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
   const navigate = useNavigate();
-  
+  const dispatch = useDispatch();
+
+  const { loading } = useSelector((state) => state.user);
+
 
   const handleSubmitLogin = async (e) => {
     e.preventDefault();
+    let Credentials = {
+     username,
+      password,
+    };
+
     try {
-      await loginUser({ email, password });
-      setEmail('');
+      const result = await dispatch(loginUser({ Credentials }));
+
+      if (result.meta.requestStatus === "fulfilled") {
+      setUsername('');
       setPassword('');
       navigate('/user');
+      }
     } catch (error) {
       console.error(error);
     }
@@ -25,12 +39,12 @@ const LoginForm = () => {
   return (
     <form onSubmit={handleSubmitLogin}>
       <div className="input-wrapper">
-        <label htmlFor="email">Email</label>
+        <label htmlFor="username">Username</label>
         <input
           type="text"
-          id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          id="username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
           required
         />
       </div>
@@ -52,12 +66,12 @@ const LoginForm = () => {
         />
         <label htmlFor="remember-me">Remember me</label>
       </div>
-      <button
+      <Button
             className="sign-in-button"
             type="submit"
       >
-            Sign In
-      </button>
+            {loading ? "Loading..." : "Sign In"}
+      </Button>
     </form>
   );
 };

@@ -1,15 +1,17 @@
 import axios from "axios";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { selectUserData } from "../../reducers/selectors.js";
-import { toggleEdit } from "../../reducers/editUserSlice.js";
-import { editUserName } from "../../reducers/userDataSlice.js";
+import { selectUserData } from "../../reducers/selectors";
+import { toggleEdit } from "../../reducers/editUserSlice";
+import { editUserName } from "../../reducers/userDataSlice";
 import Button from "../Button";
 
 export function EditForm() {
-  const [userName, setUserName] = useState("");
-  const [editSuccess, setEditSuccess] = useState(false);
-  const [editError, setEditError] = useState(false);
+  const [formData, setFormData] = useState({
+    userName: "",
+    editSuccess: false,
+    editError: false,
+  });
 
   const dispatch = useDispatch();
   const userData = useSelector(selectUserData);
@@ -23,7 +25,7 @@ export function EditForm() {
       const response = await axios.put(
         "http://localhost:3001/api/v1/user/profile",
         {
-          userName: userName,
+          userName: formData.userName,
         },
         {
           headers: {
@@ -37,16 +39,15 @@ export function EditForm() {
       dispatch(editUserName(editData.body.userName));
 
       if (response.status === 200) {
-        setEditSuccess(true);
+        setFormData({ ...formData, editSuccess: true });
       }
     } catch (error) {
       if (error.response) {
-        console.error("Server responded with status:", error.response.status);
-        console.error("Error message:", error.response.data.message);
+        console.error("Erreur du serveur :", error.response.status, "-", error.response.data.message);
       } else if (error.request) {
-        console.error("No response received from the server.");
+        console.error("Pas de réponse du serveur.");
       } else {
-        console.error("Error:", error.message);
+        console.error("Erreur :", error.message);
       }
     }
   };
@@ -55,59 +56,41 @@ export function EditForm() {
     e.preventDefault();
     const check = /^[0-9A-Za-z\s-]+$/;
 
-    setEditSuccess(false);
-    if (check.test(userName)) {
+    setFormData({ ...formData, editSuccess: false });
+    if (check.test(formData.userName)) {
       editUsername();
-      setUserName("");
+      setFormData({ ...formData, userName: "" });
     } else {
-      setEditError(true);
+      setFormData({ ...formData, editError: true });
     }
   };
+
   const handleClick = async (e) => {
     e.preventDefault();
     dispatch(toggleEdit());
-    setUserName("");
+    setFormData({ ...formData, userName: "" });
   };
 
-  const editSuccessMessage = () => {
-    if (editSuccess) {
-      return (
-        <p className="success-message">
-          Modification du nom d'utilisateur réussie!
-        </p>
-      );
-    }
-  };
-  const editErrorMessage = () => {
-    if (!editSuccess) {
-      return (
-        <p className="error-message">
-          Votre nom d'utilisateur ne peut pas contenir de caractères spéciaux,
-          veuillez rééssayer
-        </p>
-      );
-    }
-  };
   return (
-    <div className="editform--container">
-      {editSuccess === true ? editSuccessMessage() : null}
-      {editError === true ? editErrorMessage() : null}
+    <div className="edit-container">
+      {formData.editSuccess && <p className="success-message">Modification réussie du nom d'utilisateur!</p>}
+      {formData.editError && <p className="error-message">Le nom d'utilisateur ne peut pas contenir de caractères spéciaux. Veuillez réessayer.</p>}
       <form type="submit" onSubmit={handleSubmit} className="form">
-        <div className="editform--input-wrapper">
+        <div className="input-wrapper">
           <label htmlFor="username">Username:</label>
           <input
             type="text"
             id="username"
-            value={userName}
-            onChange={(e) => setUserName(e.target.value)}
+            value={formData.userName}
+            onChange={(e) => setFormData({ ...formData, userName: e.target.value })}
             required
           />
         </div>
-        <div className="editform--input-wrapper">
+        <div className="input-wrapper">
           <label htmlFor="firstName">First name:</label>
           <input type="text" id="firstName" value={firstName} disabled />
         </div>
-        <div className="editform--input-wrapper">
+        <div className="input-wrapper">
           <label htmlFor="lastName">Last name:</label>
           <input type="text" id="lastName" value={lastName} disabled />
         </div>
