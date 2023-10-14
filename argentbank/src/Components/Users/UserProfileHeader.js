@@ -7,7 +7,7 @@ import { userProfileInfo } from "../../api/userApi";
 import { useEffect } from "react";
 import { saveUserData } from "../../reducers/userDataSlice.js";
 
-function UserHeader() {
+function UserProfileHeader() {
   const userData = useSelector(selectUserData);
   const editData = useSelector(selectEditUser);
   const dispatch = useDispatch();
@@ -45,4 +45,4 @@ function UserHeader() {
     </div>
   );
 }
-export default UserHeader;
+export default UserProfileHeader;
