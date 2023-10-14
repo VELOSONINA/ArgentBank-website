@@ -1,8 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import featuresData from '../../data/featuresData';
+import chatIcon from '../../assets/images/icon-chat.png';
+import moneyIcon from '../../assets/images/icon-chat.png';
+import securityIcon from '../../assets/images/icon-chat.png';
 
-function FeatureItem({ id, icon, title, description }) {
+function FeatureItem({id,title,description}) {
+  const iconMap = {
+  1: chatIcon,
+  2: moneyIcon,
+  3: securityIcon,
+};
+
+const icon = iconMap[id] || chatIcon;
+
   return (
     <div className={`feature-item feature-${id}`}>
       <img src={icon} alt={`Feature Icon ${id}`} className={`feature-icon feature-icon-${id}`} />
