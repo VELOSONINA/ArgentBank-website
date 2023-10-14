@@ -1,43 +1,35 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { editUserNameAsync } from '../actions/userAction.js';
+import { createSlice } from "@reduxjs/toolkit";
+import { loginUser, isUserLoggedIn } from "../api/loginApi";
 
 const userSlice = createSlice({
-  name: 'user',
+  name: "user",
   initialState: {
-    userName: '',
-    error: null, 
     loading: false,
-    isLoggedIn: false,
+    error: null,
+    isLoggedIn: isUserLoggedIn(),
   },
   reducers: {
-    setUserName: (state, action) => {
-      state.userName = action.payload;
-    },
     logOut: (state) => {
-      state.userName = '';
       state.isLoggedIn = false;
     },
   },
   extraReducers: (builder) => {
     builder
-      .addCase(editUserNameAsync.pending, (state) => {
+      .addCase(loginUser.pending, (state) => {
         state.loading = true;
-        state.error = null; 
-      })
-      .addCase(editUserNameAsync.fulfilled, (state, action) => {
-        state.userName = action.payload;
-        state.loading = false; 
         state.error = null;
-        state.isLoggedIn = true; 
+        state.isLoggedIn = false;
       })
-      .addCase(editUserNameAsync.rejected, (state, action) => {
-        state.error = action.error.message; 
+      .addCase(loginUser.fulfilled, (state) => {
+        state.loading = false;
+        state.error = null;
+        state.isLoggedIn = true;
+      })
+      .addCase(loginUser.rejected, (state) => {
         state.loading = false;
         state.isLoggedIn = false;
       });
   },
 });
-
-export const { logOut } = userSlice.actions;
-
 export default userSlice.reducer;
+export const { logOut } = userSlice.actions;
