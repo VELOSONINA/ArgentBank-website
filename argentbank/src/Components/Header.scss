@@ -1,38 +1,40 @@
 @use "../Styles/Variables.scss";
 
 .main-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 5px 20px;
-  
-    a {
-      font-weight: bold;
-      color: Variables.$blue-dark-color;
-  
-      &.router-link-exact-active {
-        color: Variables.$green-color;
-      }
-    }
-  
-    .main-nav-item {
-      text-decoration: none;
-      margin-right: 0.5rem;
-  
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-  
-    .main-nav-logo {
-      display: flex;
-      align-items: center;
-  
-      .main-nav-logo-image {
-        max-width: 100%;
-        width: 200px;
-      }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 20px;
+
+  a {
+    font-weight: bold;
+    color: $blue-dark-color; 
+
+    &.router-link-exact-active {
+      color: $green-color; 
     }
   }
 
-  
+  .main-nav-item {
+    text-decoration: none;
+    margin-right: 0.5rem;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    .fa-user-circle {
+      color: $blue-dark-color; 
+    }
+  }
+
+  .main-nav-logo {
+    display: flex;
+    align-items: center;
+
+    .main-nav-logo-image {
+      max-width: 100%;
+      width: 200px;
+    }
+  }
+}
