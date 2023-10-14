@@ -5,6 +5,7 @@ import Main from "../Components/Main";
 import { useSelector } from "react-redux";
 import { selectLogIn } from "../reducers/selectors";
 import { Navigate } from "react-router-dom";
+import Layout from "../Components/Layouts/layout";
 
 function User() {
   const user = useSelector(selectLogIn);
@@ -18,12 +19,14 @@ function User() {
   }
   
   return (
-    <Main>
-      <div className="main bg-dark">
-        <UserProfileHeader />
-        <Accounts />
-      </div>
-    </Main>
+    <Layout title="Argent Bank - User page">
+      <Main>
+        <div className="main bg-dark">
+          <UserProfileHeader />
+          <Accounts />
+        </div>
+      </Main>
+    </Layout>
   );
 }
 export default User;
