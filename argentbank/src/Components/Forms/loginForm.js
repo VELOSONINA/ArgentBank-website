@@ -27,9 +27,16 @@ const LoginForm = () => {
       const result = await dispatch(loginUser({ Credentials }));
 
       if (result.meta.requestStatus === "fulfilled") {
-      setUsername('');
-      setPassword('');
-      navigate('/user');
+        //ici on stocke le token dans le localstorage
+        console.log("Token récupéré :", result.payload.token);
+        localStorage.setItem('token', result.payload.token);
+
+        //réinitialisation des champs de formulaire
+        setUsername('');
+        setPassword('');
+
+        //redirige l'utilisateur vers la page accueil après connexion réussie
+        navigate('/user');
       }
     } catch (error) {
       console.error(error);
