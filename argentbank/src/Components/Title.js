@@ -1,7 +1,6 @@
-// Layout.js
 import React, { useEffect } from 'react';
 
-const Layout = ({ children, title }) => {
+const Title = ({ children, title }) => {
   useEffect(() => {
     document.title = title || 'Argent Bank';
   }, [title]);
@@ -13,4 +12,4 @@ const Layout = ({ children, title }) => {
   );
 };
 
-export default Layout;
+export default Title;

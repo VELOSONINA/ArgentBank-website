@@ -1,16 +1,16 @@
 import React from 'react';
 import Features from '../Components/Features/Features';
 import Hero from '../Components/Features/Hero';
-import Layout from '../Components/Layouts/layout';
+import Title from '../Components/Title';
 
 const Home = () => {
   return (
-    <Layout title="Argent Bank - Home page">
+    <Title title="Argent Bank - Home page">
       <main>
         <Hero/>
         <Features/>
       </main>
-    </Layout>
+    </Title>
   );
 };
 

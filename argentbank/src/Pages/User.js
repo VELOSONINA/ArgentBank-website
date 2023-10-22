@@ -1,16 +1,16 @@
 import React from "react";
 import Accounts from "../Components/Users/Accounts";
-import UserProfileHeader from "../Components/Users/UserProfileHeader";
 import Main from "../Components/Main";
 import { useSelector } from "react-redux";
-import { selectLogIn } from "../reducers/selectors";
+import Button from '../Components/Button';
+
 import { Navigate } from "react-router-dom";
-import Layout from "../Components/Layouts/layout";
+import Title from "../Components/Title";
 
 function User() {
-  const user = useSelector(selectLogIn);
+  const user = useSelector();
   const isConnected = () => {
-    if (user.isLoggedIn === true) {
+    if (user.isLogged === true) {
       return true;
     }
   };
@@ -19,14 +19,17 @@ function User() {
   }
   
   return (
-    <Layout title="Argent Bank - User page">
+    <Title title="Argent Bank - User page">
       <Main>
         <div className="main bg-dark">
-          <UserProfileHeader />
+          <div className="header">
+            <h1>Welcome back<br />Tony Jarvis!</h1>
+            <Button className="edit-button">Edit Name</Button>
+          </div>
           <Accounts />
         </div>
       </Main>
-    </Layout>
+    </Title>
   );
 }
 export default User;

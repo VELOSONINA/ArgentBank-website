@@ -1,11 +1,11 @@
 import React from 'react';
-import LoginForm from '../Components/Forms/loginForm';
-import Layout from '../Components/Layouts/layout';
+import LoginForm from '../Components/Forms/LoginForm';
+import Title from '../Components/Title'
 
 const Login = () => {
 
   return (
-    <Layout title="Argent Bank - Sign In page">
+    <Title title="Argent Bank - Sign In page">
       <main className="main bg-dark">
         <section className="sign-in-content">
           <i className="fa fa-user-circle sign-in-icon"></i>
@@ -15,7 +15,7 @@ const Login = () => {
           </div> 
         </section>
       </main>
-    </Layout>
+    </Title>
   );
 };
 
