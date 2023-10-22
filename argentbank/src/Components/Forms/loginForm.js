@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
-import { loginUser } from '../../api/loginApi';
+import { authenticateUser  } from '../../Api/Authentication';
 import { useNavigate } from 'react-router-dom';
 import Button from '../Button'
 import { useDispatch, useSelector } from "react-redux";
 
-
-
 const LoginForm = () => {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
   const navigate = useNavigate();
@@ -18,21 +16,16 @@ const LoginForm = () => {
 
   const handleSubmitLogin = async (e) => {
     e.preventDefault();
-    let Credentials = {
-     username,
-      password,
-    };
+  
 
     try {
-      const result = await dispatch(loginUser({ Credentials }));
+      const result = await dispatch(authenticateUser ({ email,
+        password, }));
 
       if (result.meta.requestStatus === "fulfilled") {
-        //ici on stocke le token dans le localstorage
-        console.log("Token récupéré :", result.payload.token);
-        localStorage.setItem('token', result.payload.token);
-
+        
         //réinitialisation des champs de formulaire
-        setUsername('');
+        setEmail('');
         setPassword('');
 
         //redirige l'utilisateur vers la page accueil après connexion réussie
@@ -46,12 +39,12 @@ const LoginForm = () => {
   return (
     <form onSubmit={handleSubmitLogin}>
       <div className="input-wrapper">
-        <label htmlFor="username">Username</label>
+        <label htmlFor="email">Email</label>
         <input
           type="text"
-          id="username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          id="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           required
         />
       </div>
