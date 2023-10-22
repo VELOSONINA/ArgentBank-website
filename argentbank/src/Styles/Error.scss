@@ -1,8 +1,11 @@
-.error404 {
+@import './Variables.scss'; 
+
+.error {
     margin: 13rem 0;
   
     h1 {
         font-size: 4vw;
+        color: $red-color;
     }
 
     p {
