@@ -1,5 +1,5 @@
 import React from "react";
-import Accounts from "../Components/Users/Accounts";
+import Accounts from "../Components/Utils/Accounts/Accounts";
 import Main from "../Components/Main";
 import { useSelector } from "react-redux";
 import Button from '../Components/Button';

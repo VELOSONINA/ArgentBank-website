@@ -1,7 +1,7 @@
-@use "../../Styles/Variables.scss";
+@use "../../../Styles/Variables.scss";
 
 .hero {
-  background-image: url('../../assets/images/bank-tree.jpeg');
+  background-image: url('../../../assets/images/bank-tree.jpeg');
   background-position: 0 -50px;
   background-size: cover;
   background-repeat: no-repeat;

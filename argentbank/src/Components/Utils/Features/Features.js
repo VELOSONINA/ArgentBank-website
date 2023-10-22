@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import featuresData from '../../data/featuresData';
-import chatIcon from '../../assets/images/icon-chat.png';
-import moneyIcon from '../../assets/images/icon-chat.png';
-import securityIcon from '../../assets/images/icon-chat.png';
+import featuresData from '../../../Datas/featuresData';
+import chatIcon from '../../../assets/images/icon-chat.png';
+import moneyIcon from '../../../assets/images/icon-chat.png';
+import securityIcon from '../../../assets/images/icon-chat.png';
 
 function FeatureItem({id,title,description}) {
   const iconMap = {

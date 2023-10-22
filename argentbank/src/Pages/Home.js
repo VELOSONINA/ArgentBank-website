@@ -1,6 +1,6 @@
 import React from 'react';
-import Features from '../Components/Features/Features';
-import Hero from '../Components/Features/Hero';
+import Features from '../Components/Utils/Features/Features';
+import Hero from '../Components/Utils/Features/Hero';
 import Title from '../Components/Title';
 
 const Home = () => {
