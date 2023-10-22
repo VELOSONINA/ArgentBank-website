@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { loginUser, checkUserAuthentication } from '../Api/LoginApi';
+import { authenticateUser , checkUserAuthentication } from '../Api/Authentication';
 
 
 const userSlice = createSlice({
@@ -7,28 +7,28 @@ const userSlice = createSlice({
   initialState: {
     loading: false,
     error: null,
-    isLogged: checkUserAuthentication(),
+    isLoggedIn: checkUserAuthentication(),
   },
   reducers: {
     logOut: (state) => {
-      state.isLogged = false;
+      state.isLoggedIn = false;
     },
   },
   extraReducers: (builder) => {
     builder
-      .addCase(loginUser.pending, (state) => {
+      .addCase(authenticateUser.pending, (state) => {
         state.loading = true;
         state.error = null;
-        state.isLogged = false;
+        state.isLoggedIn = false;
       })
-      .addCase(loginUser.fulfilled, (state) => {
+      .addCase(authenticateUser.fulfilled, (state) => {
         state.loading = false;
         state.error = null;
-        state.isLogged = true;
+        state.isLoggedIn = true;
       })
-      .addCase(loginUser.rejected, (state) => {
+      .addCase(authenticateUser.rejected, (state) => {
         state.loading = false;
-        state.isLogged = false;
+        state.isLoggedIn = false;
       });
   },
 });
