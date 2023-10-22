@@ -1,16 +1,16 @@
 import axios from "axios";
 
-const urlUserProfile = 'http://localhost:3001/api/user/profile';
+const urlProfileFetcher = 'http://localhost:3001/api/v1/user/profile';
 
-export const userProfileInfo = async (isLogging) => {
+export const getUserprofile = async (token) => {
   try {
     const response = await axios.post(
-      urlUserProfile,
+      urlProfileFetcher,
       {},
       {
         headers: {
           Accept: "application/json",
-          Authorization: `Bearer ${isLogging}`,
+          Authorization: `Bearer ${token}`,
         },
       }
     );
