@@ -1,23 +1,20 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom'; 
+import { NavLink, useNavigate} from 'react-router-dom'; 
 import logo from '../assets/images/argentBankLogo.png';
 
 function Header() {
-  
 
-  // Définir isConnected en tant que fonction
-  const isConnected = () => {
-    const isLoggedIn = localStorage.getItem('IsLoggedIn') === 'true';
-    return isLoggedIn; 
-  };
+  const navigate = useNavigate();
 
-  // Fonction pour gérer la déconnexion
-  const handleSignOut = (e) => {
-    e.preventDefault();
-    
-    localStorage.removeItem('IsLoggedIn', 'true');
-    localStorage.removeItem('token');
-  };
+  const handleSignOut = () => {
+  localStorage.removeItem("token");
+
+  // Rediriger l'utilisateur vers la page accueil
+  navigate('/');
+
+  }
+
+  const userIsSignedIn = localStorage.getItem("token") === "true";
 
   return (
     <nav className="main-nav">
@@ -32,27 +29,21 @@ function Header() {
         </div>
       </NavLink>
       <div>
-        {isConnected() === true ? null : (
-          <NavLink className="main-nav-item" to="/sign-in">
-            <i className="fa fa-user-circle"></i>
-            Sign In
-          </NavLink>
-        )}
-        {isConnected() === false ? null : (
+        {userIsSignedIn ? (
           <>
-            <NavLink
-              to="/"
-              className="main-nav-item"
-              onClick={handleSignOut}
-            >
+            <NavLink to="/" className="main-nav-item" onClick={handleSignOut}>
               <i className="fa fa-sign-out"></i>
               Sign Out
             </NavLink>
             <NavLink to="/user" className="main-nav-item">
               <i className="fa fa-user-circle"></i>
-            
             </NavLink>
           </>
+        ) : (
+          <NavLink className="main-nav-item" to="/sign-in">
+            <i className="fa fa-user-circle"></i>
+            Sign In
+          </NavLink>
         )}
       </div>
     </nav>
