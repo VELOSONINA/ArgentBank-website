@@ -1,16 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { loginUser, isUserLoggedIn } from "../api/loginApi";
+import { loginUser, checkUserAuthentication } from '../Api/LoginApi';
+
 
 const userSlice = createSlice({
   name: "user",
   initialState: {
     loading: false,
     error: null,
-    isLoggedIn: isUserLoggedIn(),
+    isLogged: checkUserAuthentication(),
   },
   reducers: {
     logOut: (state) => {
-      state.isLoggedIn = false;
+      state.isLogged = false;
     },
   },
   extraReducers: (builder) => {
@@ -18,16 +19,16 @@ const userSlice = createSlice({
       .addCase(loginUser.pending, (state) => {
         state.loading = true;
         state.error = null;
-        state.isLoggedIn = false;
+        state.isLogged = false;
       })
       .addCase(loginUser.fulfilled, (state) => {
         state.loading = false;
         state.error = null;
-        state.isLoggedIn = true;
+        state.isLogged = true;
       })
       .addCase(loginUser.rejected, (state) => {
         state.loading = false;
-        state.isLoggedIn = false;
+        state.isLogged = false;
       });
   },
 });
