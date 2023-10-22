@@ -8,13 +8,12 @@ import { Navigate } from "react-router-dom";
 import Title from "../Components/Title";
 
 function User() {
-  const user = useSelector();
-  const isConnected = () => {
-    if (user.isLogged === true) {
-      return true;
-    }
-  };
-  if (!isConnected()) {
+  const user = useSelector((state) => state.user);
+
+  // Vérifier si l'utilisateur est actuellement connecté
+  const isUserCurrentlyLoggedIn = user && user.isLoggedIn;
+
+  if (!isUserCurrentlyLoggedIn) {
     return <Navigate to="/sign-in" />;
   }
   
@@ -23,7 +22,7 @@ function User() {
       <Main>
         <div className="main bg-dark">
           <div className="header">
-            <h1>Welcome back<br />Tony Jarvis!</h1>
+            <h1>Welcome back<br />{user && user.firstName}!</h1>
             <Button className="edit-button">Edit Name</Button>
           </div>
           <Accounts />
