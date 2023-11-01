@@ -30,7 +30,7 @@ FeatureItem.propTypes = {
   description: PropTypes.string.isRequired,
 };
 
-function Features() {
+function FeaturesBody() {
   return (
     <section className="features">
       <h2 className="sr-only">Features</h2>
@@ -41,4 +41,4 @@ function Features() {
   );
 }
 
-export default Features;
+export default FeaturesBody;
