@@ -1,12 +1,13 @@
 import React from 'react';
 import LoginForm from '../Components/Utils/Forms/LoginForm';
-import Title from '../Components/Title'
+import GetTitle from '../Components/GetTitle';
 
 const Login = () => {
 
   return (
-    <Title title="Argent Bank - Sign In page">
+    
       <main className="main bg-dark">
+      <GetTitle title="Sign In page"/>
         <section className="sign-in-content">
           <i className="fa fa-user-circle sign-in-icon"></i>
           <div className="login-page">
@@ -15,7 +16,6 @@ const Login = () => {
           </div> 
         </section>
       </main>
-    </Title>
   );
 };
 

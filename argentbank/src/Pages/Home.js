@@ -1,16 +1,17 @@
 import React from 'react';
-import Features from '../Components/Utils/Features/Features';
-import Hero from '../Components/Utils/Features/Hero';
-import Title from '../Components/Title';
+import FeaturesBody from '../Components/Utils/Features/FeaturesBody';
+import FeaturesHeader from '../Components/Utils/Features/FeaturesHeader';
+import GetTitle from '../Components/GetTitle';
 
 const Home = () => {
+
   return (
-    <Title title="Argent Bank - Home page">
+    
       <main>
-        <Hero/>
-        <Features/>
+        <GetTitle title="Home page"/>
+        <FeaturesHeader/>
+        <FeaturesBody/>
       </main>
-    </Title>
   );
 };
 
