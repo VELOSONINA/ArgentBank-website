@@ -1,20 +1,27 @@
 import React from 'react';
 import { NavLink, useNavigate} from 'react-router-dom'; 
 import logo from '../assets/images/argentBankLogo.png';
+import {useDispatch, useSelector} from 'react-redux'
+import { logOut } from '../Reducers/authSlice';
+
 
 function Header() {
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleSignOut = () => {
   localStorage.removeItem("token");
 
+  dispatch(logOut());
+
   // Rediriger l'utilisateur vers la page accueil
   navigate('/');
-
   }
 
-  const userIsSignedIn = localStorage.getItem("token") === "true";
+  const user = useSelector((state) => state.user);
+
+  const isUserCurrentlyLoggedIn = user && user.isLoggedIn;
 
   return (
     <nav className="main-nav">
@@ -29,7 +36,7 @@ function Header() {
         </div>
       </NavLink>
       <div>
-        {userIsSignedIn ? (
+        {isUserCurrentlyLoggedIn ? (
           <>
             <NavLink to="/" className="main-nav-item" onClick={handleSignOut}>
               <i className="fa fa-sign-out"></i>
@@ -37,6 +44,7 @@ function Header() {
             </NavLink>
             <NavLink to="/user" className="main-nav-item">
               <i className="fa fa-user-circle"></i>
+              {user && user.userName}
             </NavLink>
           </>
         ) : (
