@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import { authenticateUser  } from '../../../Api/Authentication';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../Button'
@@ -8,6 +8,9 @@ const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
+  const [error, setError] = useState(null);
+
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -16,25 +19,35 @@ const LoginForm = () => {
 
   const handleSubmitLogin = async (e) => {
     e.preventDefault();
-  
 
     try {
       const result = await dispatch(authenticateUser ({ email,
         password, }));
 
-      if (result.meta.requestStatus === "fulfilled") {
+      if (authenticateUser.fulfilled.match(result)) {
         
         //réinitialisation des champs de formulaire
         setEmail('');
         setPassword('');
-
+        setError(null); 
         //redirige l'utilisateur vers la page accueil après connexion réussie
         navigate('/user');
+      } else if (authenticateUser.rejected.match(result)) {
+        setError(result.payload);
       }
     } catch (error) {
       console.error(error);
     }
   };
+
+  useEffect(() => {
+    if (error) {
+      const timeout = setTimeout(() => {
+        setError(null);
+      }, 3000);
+      return () => clearTimeout(timeout);
+    }
+  }, [error]);
 
   return (
     <form onSubmit={handleSubmitLogin}>
@@ -67,11 +80,12 @@ const LoginForm = () => {
         <label htmlFor="remember-me">Remember me</label>
       </div>
       <Button
-            className="sign-in-button"
+            className={`sign-in-button ${error ? '' : 'success'}`}
             type="submit"
       >
             {loading ? "Loading..." : "Sign In"}
       </Button>
+      {error && <p className='error-message'>{error}</p>}
     </form>
   );
 };
