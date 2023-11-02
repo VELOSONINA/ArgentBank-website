@@ -8,7 +8,7 @@ export const checkUserAuthentication  = () => {
 const urlAuthentication = 'http://localhost:3001/api/v1/user/login';
 
 export const authenticateUser  = createAsyncThunk(
-  "user/authenticateUser ",
+  "auth/authenticateUser ",
   async (credentials, { rejectWithValue }) => {
     try {
 
@@ -18,19 +18,13 @@ export const authenticateUser  = createAsyncThunk(
 
       const response = await axios.post(urlAuthentication, credentials);
 
-      if (response.status === 200) {
-        const token = response.data.body.token;
+      localStorage.setItem("token", response.data.token);
 
-        // Stockage du token dans le stockage local
-        localStorage.setItem('token', token);
-
-        return response.data;
-      } else {
-        return rejectWithValue("Erreur d'authentification.");
-      }
+      return response.data.user;
+  
     } catch (error) {
       if (error.response && error.response.status === 400) {
-        return rejectWithValue("Erreur d'authentification");
+        return rejectWithValue("Identifiants incorrects");
       } else {
         return rejectWithValue("Une erreur est survenue. Veuillez réessayer.");
       }
