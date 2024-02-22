@@ -9,14 +9,14 @@ import { Navigate } from "react-router-dom";
 
 function User() {
   const user = useSelector((state) => state.user);
-  const [isEditingName, setIsEditingName] = useState(false); // Initialisé à false par défaut
-  const [isEditingInfo, setIsEditingInfo] = useState(false); // Initialisé à false par défaut
+  const [isEditingName, setIsEditingName] = useState(false); 
+  const [isEditingInfo, setIsEditingInfo] = useState(false); 
 
   // Vérifier si l'utilisateur est actuellement connecté
   const isUserCurrentlyLoggedIn = user && user.isLoggedIn;
 
   useEffect(() => {
-    // Mettre à jour l'état en fonction de la connexion de l'utilisateur
+    // Mis à jour de l'état en fonction de la connexion de l'utilisateur
     if (isUserCurrentlyLoggedIn) {
       setIsEditingName(true);
       setIsEditingInfo(true);
