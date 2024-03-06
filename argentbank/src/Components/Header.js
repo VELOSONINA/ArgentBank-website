@@ -45,7 +45,7 @@ function Header() {
             <NavLink to="/user" className="main-nav-item">
               <i className="fa fa-user-circle"></i>
               {/* {user && user.userName} */}
-              {user && `${user.firstName} ${user.lastName}`}
+              {user && ` ${user.user.lastName}`}
             </NavLink>
           </>
         ) : (
