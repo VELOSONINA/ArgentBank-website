@@ -25,10 +25,6 @@ const LoginForm = () => {
         password, }));
 
       if (authenticateUser.fulfilled.match(result)) {
-        
-        //réinitialisation des champs de formulaire
-        setEmail('');
-        setPassword('');
         setError(null); 
         //redirige l'utilisateur vers la page accueil après connexion réussie
         navigate('/user');
