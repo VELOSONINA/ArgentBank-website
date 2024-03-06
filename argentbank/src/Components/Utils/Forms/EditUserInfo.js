@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Button from "../../Button";
-import { editUserInfo } from "../../../Api/Authentication"
+import { editUserInfo } from "../../../Api/Authentication";
 
-export default function EditUserInfo() {
+export default function EditUserInfo({ onCancel, onSave }) {
     const { userName, firstName, lastName, token } = useSelector(state => state.user.user)
     const [isActive, setIsActive] = useState(true);
     const [initUserName, setInitUserName] = useState("");
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
      // Fonction pour sauvegarder et fermer le formulaire
     const saveCloseForm = () => {
@@ -15,21 +15,24 @@ export default function EditUserInfo() {
         console.log("userName", userName)
         console.log("token", token)
         dispatch(editUserInfo({ userName: initUserName, token: token }));
-        setIsActive(current => !current);
-        // setIsActive(false);
-        console.log("isActive", isActive)
+        // setIsActive(current => !current);
+        setIsActive(false);
+        console.log("isActive", isActive);
     };
 
    // Fonction pour gérer la soumission du formulaire
     const handleSubmit = (e) => {
         e.preventDefault();
-        // dispatch(editUserInfo({ userName: initUserName, token: token }));
         saveCloseForm();
     };
     
     useEffect(() => {
         setInitUserName(userName);
     }, [userName]);
+
+    useEffect(() => {
+        console.log("isActive", isActive);
+     }, [isActive]);
 
 
     return (
@@ -74,27 +77,8 @@ export default function EditUserInfo() {
                         </div>
                     </div>
                     <div className="userNameButton">
-                        <Button
-                            className="editUserButton"
-                            type="onClick"
-                            children="Save"
-                            onClick={handleSubmit}
-                            // onClick={(e) => {
-                            //     e.preventDefault();
-                            //     dispatch(editUserInfo({ userName: initUserName, token: token }))
-                            //     saveCloseForm();
-                            // }}
-                        />
-                        <Button
-                            className="editUserButton"
-                            type="onClick"
-                            children="Cancel"
-                            onClick={() => setIsActive(false)}
-                            // onClick={(e) => {
-                            //     // e.preventDefault();
-                            //     // saveCloseForm();
-                            // }}
-                        />
+                        <Button className="editUserButton" onClick={onSave}>Save</Button>
+                        <Button className="editUserButton" onClick={onCancel}>Cancel</Button>
                     </div>
                 </form>
             </div>
