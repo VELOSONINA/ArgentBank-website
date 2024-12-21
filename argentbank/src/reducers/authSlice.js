@@ -41,6 +41,7 @@ const authSlice = createSlice({
       .addCase(authenticateUser.rejected, (state, action) => {
         state.error = action.payload;
         state.loading = false;
+        state.isLoggedIn = false;
       })
       .addCase(editUserInfo.fulfilled, (state, action) => {
         if (action.payload) { 
