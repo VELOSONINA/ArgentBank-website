@@ -3,45 +3,50 @@ import { useSelector, useDispatch } from "react-redux";
 import Button from "../../Button";
 import { editUserInfo } from "../../../Api/Authentication";
 
-export default function EditUserInfo({ onCancel, onSave }) {
-    const { userName, firstName, lastName, token } = useSelector(state => state.user.user)
+export default function EditUserInfo({ onCancel }) {
+    const { userName, firstName, lastName, token } = useSelector(state => state.user.user);
     const [isActive, setIsActive] = useState(true);
-    const [initUserName, setInitUserName] = useState("");
+    const [initUserName, setInitUserName] = useState({
+        userName: "",
+        firstName: "",
+        lastName: ""
+    });
     const dispatch = useDispatch();
 
-     // Fonction pour sauvegarder et fermer le formulaire
-    const saveCloseForm = () => {
-        console.log("saveCloseForm")
-        console.log("userName", userName)
-        console.log("token", token)
-        dispatch(editUserInfo({ userName: initUserName, token: token }));
-        // setIsActive(current => !current);
-        setIsActive(false);
-        console.log("isActive", isActive);
+    useEffect(() => {
+      setInitUserName(prev => ({
+        ...prev,
+        userName: userName,
+        firstName: firstName,
+        lastName: lastName
+      }));
+    }, [userName, firstName, lastName]);
+
+
+    const saveCloseForm = (formData) => {
+      console.log("saveCloseForm");
+      console.log("formData", formData);
+      dispatch(editUserInfo(formData));
+      setIsActive(true);
     };
 
-   // Fonction pour gérer la soumission du formulaire
     const handleSubmit = (e) => {
-        e.preventDefault();
-        saveCloseForm();
+      e.preventDefault();
+      saveCloseForm({
+        userName: initUserName.userName,
+        firstName: initUserName.firstName,
+        lastName: initUserName.lastName,
+        token: token 
+      });
     };
-    
-    useEffect(() => {
-        setInitUserName(userName);
-    }, [userName]);
-
-    useEffect(() => {
-        console.log("isActive", isActive);
-     }, [isActive]);
-
 
     return (
-        <div style={{display: isActive ?  'block' : 'none' }}>
-            <div className="headerInfo" >
-                <h1>Edit user info</h1>
+        <div style={{display: isActive ? 'block' : 'none'}}>
+            <div className="headerInfo">
+                <h1>Edit user info - {initUserName.userName}</h1>
             </div>
             <div className="userName_form">
-                <form onSubmit={handleSubmit}
+                <form onSubmit={handleSubmit} 
                      className="userName_form"
                     id="userNameEdit"
                 >
@@ -51,8 +56,8 @@ export default function EditUserInfo({ onCancel, onSave }) {
                             <input
                                 type="text"
                                 id="userName"
-                                value={initUserName}
-                                onChange={(e) => setInitUserName(e.target.value)}
+                                value={initUserName.userName}
+                                onChange={(e) => setInitUserName(prev => ({...prev, userName: e.target.value}))}
                             />
                         </div>
                         <div className="userName_input">
@@ -60,9 +65,8 @@ export default function EditUserInfo({ onCancel, onSave }) {
                             <input
                                 type="text"
                                 id="firstName"
-                                value={firstName}
-                                onChange={(e) => e.preventDefault()}
-                                disabled
+                                value={initUserName.firstName}
+                                onChange={(e) => setInitUserName(prev => ({...prev, firstName: e.target.value}))}
                             />
                         </div>
                         <div className="userName_input">
@@ -70,14 +74,13 @@ export default function EditUserInfo({ onCancel, onSave }) {
                             <input
                                 type="text"
                                 id="lastName"
-                                value={lastName}
-                                onChange={(e) => e.preventDefault()}
-                                disabled
+                                value={initUserName.lastName}
+                                onChange={(e) => setInitUserName(prev => ({...prev, lastName: e.target.value}))}
                             />
                         </div>
                     </div>
                     <div className="userNameButton">
-                        <Button className="editUserButton" onClick={onSave}>Save</Button>
+                        <Button className="editUserButton" type="submit">Save</Button>
                         <Button className="editUserButton" onClick={onCancel}>Cancel</Button>
                     </div>
                 </form>
