@@ -6,21 +6,16 @@ import { logOut } from '../Reducers/authSlice';
 
 
 function Header() {
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleSignOut = () => {
   localStorage.removeItem("token");
-
   dispatch(logOut());
-
-  // Rediriger l'utilisateur vers la page accueil
   navigate('/');
   }
 
   const user = useSelector((state) => state.user);
-
   const isUserCurrentlyLoggedIn = user && user.isLoggedIn;
 
   return (
@@ -44,8 +39,8 @@ function Header() {
             </NavLink>
             <NavLink to="/user" className="main-nav-item">
               <i className="fa fa-user-circle"></i>
-              {/* {user && user.userName} */}
-              {user && ` ${user.user.lastName}`}
+              {user && user.user.userName}
+              {/* {user && ` ${user.user.lastName}`} */}
             </NavLink>
           </>
         ) : (
