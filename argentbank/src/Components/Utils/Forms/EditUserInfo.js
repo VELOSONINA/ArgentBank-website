@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Button from "../../Button";
 import { editUserInfo } from "../../../Api/Authentication";
 
-export default function EditUserInfo({ onCancel }) {
+export default function EditUserInfo({ onCancel, onSave  }) {
     const { userName, firstName, lastName, token } = useSelector(state => state.user.user);
     const [isActive, setIsActive] = useState(true);
     const [initUserName, setInitUserName] = useState({
@@ -28,6 +28,7 @@ export default function EditUserInfo({ onCancel }) {
       console.log("formData", formData);
       dispatch(editUserInfo(formData));
       setIsActive(true);
+      onSave ();
     };
 
     const handleSubmit = (e) => {
