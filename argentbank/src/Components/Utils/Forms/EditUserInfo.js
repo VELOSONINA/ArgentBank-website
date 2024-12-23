@@ -14,31 +14,31 @@ export default function EditUserInfo({ onCancel, onSave  }) {
     const dispatch = useDispatch();
 
     useEffect(() => {
-      setInitUserName(prev => ({
-        ...prev,
-        userName: userName,
-        firstName: firstName,
-        lastName: lastName
-      }));
+        setInitUserName(prev => ({
+            ...prev,
+            userName: userName,
+            firstName: firstName,
+            lastName: lastName
+        }));
     }, [userName, firstName, lastName]);
 
 
     const saveCloseForm = (formData) => {
-      console.log("saveCloseForm");
-      console.log("formData", formData);
-      dispatch(editUserInfo(formData));
-      setIsActive(true);
-      onSave ();
+        console.log("saveCloseForm");
+        console.log("formData", formData);
+        dispatch(editUserInfo(formData));
+        setIsActive(true);
+        onSave ();
     };
 
     const handleSubmit = (e) => {
-      e.preventDefault();
-      saveCloseForm({
-        userName: initUserName.userName,
-        firstName: initUserName.firstName,
-        lastName: initUserName.lastName,
-        token: token 
-      });
+        e.preventDefault();
+        if (initUserName.userName !== userName) {
+            saveCloseForm({
+                userName: initUserName.userName,
+                token: token 
+            });
+        };
     };
 
     return (
