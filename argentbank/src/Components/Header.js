@@ -10,9 +10,9 @@ function Header() {
   const dispatch = useDispatch();
 
   const handleSignOut = () => {
-  localStorage.removeItem("token");
-  dispatch(logOut());
-  navigate('/');
+    localStorage.removeItem("token");
+    dispatch(logOut());
+    navigate('/');
   }
 
   const user = useSelector((state) => state.user);
