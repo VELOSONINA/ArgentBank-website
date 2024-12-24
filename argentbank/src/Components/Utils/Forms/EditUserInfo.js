@@ -53,7 +53,7 @@ export default function EditUserInfo({ onCancel, onSave  }) {
                 >
                     <div className="user_input">
                         <div className="userName_input">
-                            <label htmlFor="userName" className="labelFormSignin">User name: </label>
+                            <label htmlFor="userName" className="labelFormSignin">Username: </label>
                             <input
                                 type="text"
                                 id="userName"
@@ -67,7 +67,8 @@ export default function EditUserInfo({ onCancel, onSave  }) {
                                 type="text"
                                 id="firstName"
                                 value={initUserName.firstName}
-                                onChange={(e) => setInitUserName(prev => ({...prev, firstName: e.target.value}))}
+                                onChange={(e) => setInitUserName(prev => ({...prev, firstName: e.target.value}))} 
+                                disabled
                             />
                         </div>
                         <div className="userName_input">
@@ -76,7 +77,8 @@ export default function EditUserInfo({ onCancel, onSave  }) {
                                 type="text"
                                 id="lastName"
                                 value={initUserName.lastName}
-                                onChange={(e) => setInitUserName(prev => ({...prev, lastName: e.target.value}))}
+                                onChange={(e) => setInitUserName(prev => ({...prev, lastName: e.target.value}))} 
+                                disabled
                             />
                         </div>
                     </div>
