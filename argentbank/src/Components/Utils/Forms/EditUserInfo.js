@@ -53,7 +53,7 @@ export default function EditUserInfo({ onCancel, onSave  }) {
                 >
                     <div className="user_input">
                         <div className="userName_input">
-                            <label htmlFor="userName" className="labelFormSignin">Username: </label>
+                            <label htmlFor="userName" className="labelFormSignin">User name: </label>
                             <input
                                 type="text"
                                 id="userName"
