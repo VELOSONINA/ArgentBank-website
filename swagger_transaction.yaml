@@ -1,0 +1,318 @@
+swagger: '2.0'
+info:
+  title: Bank Argent API documentation
+  description: Contains all available API endpoints in this codebase
+  version: 1.0.0
+  termsOfService: http://swagger.io/terms/
+host: localhost:3001
+basePath: /api/v1
+schemes:
+  - http
+paths:
+  /user/login:
+    post:
+      tags:
+        - User Module
+      summary: Login
+      description: API for Login
+      parameters:
+        - in: body
+          name: body
+          description: Login Payload
+          required: true
+          schema:
+            $ref: '#/definitions/Login'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Login Successfully
+          schema:
+            $ref: '#/definitions/LoginResponse'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+  /user/signup:
+    post:
+      tags:
+        - User Module
+      summary: Signup
+      description: API for Signup
+      parameters:
+        - in: body
+          name: body
+          description: Signup Payload
+          required: true
+          schema:
+            $ref: '#/definitions/User'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Signup Successfully
+          schema:
+            $ref: '#/definitions/ApiResponse'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+  /user/profile:
+    post:
+      security:
+        - Bearer: []
+      tags:
+        - User Module
+      summary: User Profile API
+      description: API for fetching a user profile
+      responses:
+        '200':
+          description: User profile retrieved successfully
+          schema:
+            $ref: '#/definitions/ApiResponse'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+    put:
+      security:
+        - Bearer: []
+      tags:
+        - User Module
+      summary: User Profile API
+      description: API for updating a user profile
+      parameters:
+        - in: body
+          name: body
+          description: Update user profile attributes
+          required: true
+          schema:
+            $ref: '#/definitions/UserProfile'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: User profile updated successfully
+          schema:
+            $ref: '#/definitions/ApiResponse'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+  /user/operations/monthly/{monthId}:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - Operation Module
+      summary: Get Transactions for the current month grouped by account
+      description: Retrieve all transactions for the current month grouped by account
+      parameters:
+        - name: monthId
+          in: path
+          required: true
+          description: number of the month
+          type: string
+      responses:
+        '200':
+          description: Operations successfully retrieved
+          schema:
+            $ref: '#/definitions/AccountTransactionsGrouped'
+          examples:
+            application/json: [ 
+              {
+                "accounts": [
+                  {
+                    "accountId": 5984,
+                    "operations": [
+                      {
+                        "operationId": 480,
+                        "date": "12/12/2024",
+                        "description": "Movie Tickets",
+                        "amount": 15.00,
+                        "balance": 286.00,
+                        "accountId": 5984,
+                        "note": "Weekend movie night",
+                        "category": "Entertainment",
+                        "operationType": "debit"
+                      },
+                      {
+                        "operationId": 481,
+                        "date": "12/12/2024",
+                        "description": "Books Purchase",
+                        "amount": 20.00,
+                        "balance": 266.00,
+                        "accountId": 5984,
+                        "note": "For the upcoming book club",
+                        "category": "Books",
+                        "operationType": "credit"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+  /user/operations/{operationId}:
+    parameters:
+      - name: operationId
+        in: path
+        required: true
+        description: ID of operation to retrieve details for
+        type: string
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - Operation Module
+      summary: Get details of operation
+      description: Retrieve details of a specific operation
+      responses:
+        '200':
+          description: Operation successfully retrieved
+          schema:
+            $ref: '#/definitions/OperationInfos'
+          examples:
+            application/json: [
+              {
+                "operationId": 789,
+                "date": "12/12/2024",
+                "amount": 15.50,
+                "description": "Lunch at Osaka restaurant",
+                "accountId": 5984,
+                "note": "Meeting with colleagues",
+                "category": "Dining",
+                "operationType": "electronic"
+              }
+            ]
+        '400':
+          description: Operation not found
+        '500':
+          description: Internal Server Error
+    put:
+      security:
+        - Bearer: []
+      tags:
+        - Operation Module
+      summary: Update operation information
+      description: Update information of a specific operation
+      parameters:
+        - name: body
+          in: body
+          required: true
+          description: Update operation information
+          schema:
+            $ref: '#/definitions/OperationInfos'
+      responses:
+        '200':
+          description: Operation updated successfully
+          schema:
+            $ref: '#/definitions/OperationInfos'
+        '400':
+          description: Operation not found
+        '500':
+          description: Internal Server Error
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
+definitions:
+  User:
+    type: object
+    properties:
+      email:
+        type: string
+        description: User email
+      password:
+        type: string
+        description: User password
+      firstName:
+        type: string
+        description: User first name
+      lastName:
+        type: string
+        description: User last name
+      userName:
+        type: string
+        description: User public name
+  Login:
+    type: object
+    properties:
+      email:
+        type: string
+        description: User email
+      password:
+        type: string
+        description: User password
+  ApiResponse:
+    type: object
+    properties:
+      status:
+        type: integer
+      message:
+        type: string
+      body:
+        type: object
+        properties:
+          id:
+            type: string
+          email:
+            type: string
+  LoginResponse:
+    type: object
+    properties:
+      token:
+        type: string
+  UserProfile:
+    type: object
+    properties:
+      userName:
+        type: string
+  OperationInfos:
+    type: object
+    properties:
+      operationId:
+        type: integer
+        description: Unique identifier for the operation
+      date:
+        type: string
+        format: date
+        description: Operation date
+      description:
+        type: string
+        description: Name of the store or merchant for the operation
+      accountId:
+        type: integer
+        description: Unique identifier for the account
+      note:
+        type: string
+        description: Additional and personal note for the user
+      category:
+        type: string
+        description: Category for organizing operations
+      operationType:
+        type: string
+        description: Type of operation (debit or credit)
+      amount:
+        type: number
+        description: Value of the operation (debit or credit)
+  AccountTransactionsGrouped:
+    type: object
+    properties:
+      accounts:
+        type: array
+        items:
+          $ref: '#/definitions/Account'
+  Account:
+    type: object
+    properties:
+      accountId:
+        type: integer
+      operations:
+        type: array
+        items:
+          $ref: '#/definitions/OperationInfos'
