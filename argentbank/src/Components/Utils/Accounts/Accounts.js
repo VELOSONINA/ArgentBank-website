@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Button from "../../Button";
+import Button from "../../Layouts/Button";
 import accountsData from "../../../Datas/accountsData"; 
 
 // Composant AccountItem
@@ -22,7 +22,7 @@ function AccountItem({ id, title, amount, description }) {
 AccountItem.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  amount: PropTypes.number.isRequired,
+  amount: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   description: PropTypes.string.isRequired,
 };
 
