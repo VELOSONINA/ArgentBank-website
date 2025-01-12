@@ -39,6 +39,7 @@ const LoginForm = () => {
   useEffect(() => {
     if (error) {
       const timeout = setTimeout(() => {
+        setPassword('');
         setError(null);
       }, 3000);
       return () => clearTimeout(timeout);
