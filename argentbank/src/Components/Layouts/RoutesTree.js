@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import Home from '../Pages/Home';
-import User from "../Pages/User";
-import Login from '../Pages/Login';
-import PageNotFound from '../Pages/404Page';
+import Home from '../../Pages/Home';
+import User from "../../Pages/User";
+import Login from '../../Pages/Login';
+import PageNotFound from '../../Pages/404Page';
 
 
 const RoutesTree = () => {
