@@ -1,6 +1,6 @@
 import React from 'react';
 import LoginForm from '../Components/Utils/Forms/LoginForm';
-import GetTitle from '../Components/GetTitle';
+import GetTitle from '../Components/Layouts/GetTitle';
 
 const Login = () => {
 

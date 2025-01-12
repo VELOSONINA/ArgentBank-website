@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import Accounts from "../Components/Utils/Accounts/Accounts";
 import EditUserInfo from "../Components/Utils/Forms/EditUserInfo";
-import Main from "../Components/Main";
+import Main from "../Components/Layouts/Main";
 import { useSelector } from "react-redux";
-import Button from '../Components/Button';
-import GetTitle from '../Components/GetTitle';
+import Button from '../Components/Layouts/Button';
+import GetTitle from '../Components/Layouts/GetTitle';
 import { Navigate } from "react-router-dom";
 
 function User() {
