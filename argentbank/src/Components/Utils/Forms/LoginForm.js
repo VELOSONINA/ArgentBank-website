@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from 'react';
 import { authenticateUser  } from '../../../Api/Authentication';
 import { useNavigate } from 'react-router-dom';
-import Button from '../../Button'
+import Button from '../../Layouts/Button'
 import { useDispatch, useSelector } from "react-redux";
 
 const LoginForm = () => {
