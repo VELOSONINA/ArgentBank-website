@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Button from "../../Layouts/Button";
+import Button from "../../Button/Button";
 import accountsData from "../../../Datas/accountsData"; 
 
 // Composant AccountItem

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Button from "../../Layouts/Button";
+import Button from "../../Button/Button";
 import { editUserInfo } from "../../../Api/Authentication";
 
 export default function EditUserInfo({ onCancel, onSave  }) {
